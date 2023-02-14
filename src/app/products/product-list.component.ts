@@ -13,7 +13,7 @@ export class ProductListComponent implements OnInit {
   imageMargin = 20;
   showImage = false;
   pageTitle = 'Product List';
-  products: Product[] = [{
+  private _products: Product[] = [{
     "productId": 1,
     "productName": "Leaf Rake",
     "productCode": "GDN-0011",
@@ -63,6 +63,15 @@ export class ProductListComponent implements OnInit {
       "starRating": 4.6,
       "imageUrl": "assets/images/xbox-controller.png"
     }];
+  get products(): Product[] {
+    let normalizeListFilter = this._listFilter.toUpperCase();
+
+    return this._products
+      .filter(p => p.productName
+        .toUpperCase()
+        .includes(normalizeListFilter))
+  }
+
   private _listFilter = '';
 
   get listFilter(): string {
