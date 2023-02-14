@@ -5,12 +5,14 @@ import {AppComponent} from './app.component';
 import {ProductListComponent} from "./products/product-list.component";
 import {FormsModule} from "@angular/forms";
 import { ReplacePipe } from './shared/pipes/replace.pipe';
+import { StarComponent } from './shared/components/star/star.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
-    ReplacePipe
+    ReplacePipe,
+    StarComponent
   ],
   imports: [
     BrowserModule,
