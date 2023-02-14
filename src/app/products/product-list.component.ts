@@ -9,7 +9,6 @@ import {Product} from "./product";
 
 export class ProductListComponent implements OnInit {
 
-  listFilter = '';
   imageWidth = 20;
   imageMargin = 20;
   showImage = false;
@@ -64,6 +63,16 @@ export class ProductListComponent implements OnInit {
       "starRating": 4.6,
       "imageUrl": "assets/images/xbox-controller.png"
     }];
+  private _listFilter = '';
+
+  get listFilter(): string {
+    return this._listFilter;
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+  }
+
 
   toggleImage(): void {
     this.showImage = !this.showImage;
