@@ -90,4 +90,8 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     console.log('On init')
   }
+
+  onStarClicked(rating: number): void {
+    this.pageTitle = `Product rating is ${rating}`
+  }
 }

@@ -59,7 +59,9 @@
             | lowercase}}
           </td>
           <td>
-            <pm-star [rating]="product.starRating"></pm-star>
+            <pm-star (ratingClicked)="onStarClicked($event)"
+                     [rating]="product.starRating">
+            </pm-star>
           </td>
         </tr>
         </tbody>
