@@ -7,6 +7,7 @@ import {Component} from "@angular/core";
 
 export class ProductListComponent {
 
+  listFilter = '';
   imageWidth = 20;
   imageMargin = 20;
   showImage = false;
