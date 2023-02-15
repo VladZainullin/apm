@@ -1,6 +1,7 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {Product} from "./product";
 import {ProductService} from "../shared/services/product.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'pm-products',
@@ -8,11 +9,12 @@ import {ProductService} from "../shared/services/product.service";
   styleUrls: ['product-list.component.css']
 })
 
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnDestroy {
   imageWidth = 20;
   imageMargin = 20;
   showImage = false;
   pageTitle = 'Product List';
+  sub!: Subscription;
   private _service: ProductService;
 
   constructor(service: ProductService) {
@@ -29,14 +31,14 @@ export class ProductListComponent implements OnInit {
     this._listFilter = value;
   }
 
+  private _products: Product[] = [];
   get products(): Product[] {
     let normalizeListFilter = this._listFilter.toUpperCase();
 
-    return this._service
-      .getProducts()
+    return this._products
       .filter(p => p.productName
         .toUpperCase()
-        .includes(normalizeListFilter))
+        .includes(normalizeListFilter));
   }
 
   toggleImage(): void {
@@ -44,7 +46,18 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('On init')
+    this.sub = this._service
+      .getProducts()
+      .subscribe({
+        next: p => {
+          this._products = p
+        },
+        error: err => console.log(err)
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
   onStarClicked(rating: number): void {
