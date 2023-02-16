@@ -11,14 +11,11 @@ import { ProductDetailComponent } from './products/product-detail/product-detail
 import { WelcomeComponent } from './home/welcome/welcome.component';
 import {RouterModule} from "@angular/router";
 import {ProductDetailGuard} from "./products/product-detail/product-detail.guard";
+import {ProductsModule} from "./products/products.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListComponent,
-    ReplacePipe,
-    StarComponent,
-    ProductDetailComponent,
     WelcomeComponent
   ],
   imports: [
@@ -29,9 +26,8 @@ import {ProductDetailGuard} from "./products/product-detail/product-detail.guard
       {path: 'products', component: ProductListComponent },
       {path: 'products/:id', canActivate: [ProductDetailGuard], component: ProductDetailComponent},
       {path: 'welcome', component: WelcomeComponent},
-      {path: '', redirectTo: 'welcome', pathMatch: 'full'},
-      {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
-    ])
+    ]),
+    ProductsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
