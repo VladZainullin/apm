@@ -9,6 +9,7 @@ import {StarComponent} from './shared/components/star/star.component';
 import {HttpClientModule} from "@angular/common/http";
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { WelcomeComponent } from './home/welcome/welcome.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { WelcomeComponent } from './home/welcome/welcome.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
